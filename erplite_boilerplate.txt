@@ -1,0 +1,104 @@
+ERPLite/
+├── backend/              # Go API
+│   ├── go.mod
+│   ├── main.go
+│   └── Dockerfile
+├── frontend/             # Angular + Tailwind
+│   ├── angular.json
+│   ├── package.json
+│   ├── src/
+│   └── Dockerfile
+├── docker-compose.yml    # Orquesta backend + frontend
+└── README.md
+
+---
+
+# ERPLite
+Proyecto base con backend en Go y frontend en Angular + Tailwind CSS, usando Docker para desarrollo y despliegue local.
+
+## 🚀 Requisitos
+- Node.js (v20 o superior)
+- Angular CLI (`npm install -g @angular/cli`)
+- Docker y Docker Compose
+- Go (v1.22 o superior)
+
+---
+
+## 📦 Instalación paso a paso
+
+### Backend (Go)
+1. Ir a la carpeta `backend`:
+   ```bash
+   cd backend
+   ```
+2. Inicializar el módulo de Go:
+   ```bash
+   go mod init erplite-backend
+   ```
+3. Ejecutar localmente:
+   ```bash
+   go run main.go
+   ```
+   El backend estará en: [http://localhost:8080/api/hello](http://localhost:8080/api/hello)
+
+---
+
+### Frontend (Angular + Tailwind)
+1. Ir a la carpeta `frontend`:
+   ```bash
+   cd frontend
+   ```
+2. Crear nuevo proyecto Angular si no existe:
+   ```bash
+   ng new frontend
+   ```
+3. Instalar Tailwind:
+   ```bash
+   npm install -D tailwindcss postcss autoprefixer
+   npx tailwindcss init
+   ```
+4. Editar `tailwind.config.js`:
+   ```js
+   content: ["./src/**/*.{html,ts}"]
+   ```
+5. Agregar en `src/styles.css`:
+   ```css
+   @tailwind base;
+   @tailwind components;
+   @tailwind utilities;
+   ```
+6. Correr en local:
+   ```bash
+   ng serve
+   ```
+   Acceder en: [http://localhost:4200](http://localhost:4200)
+
+---
+
+## 🐳 Docker
+### Levantar todo con Docker
+Desde la raíz del proyecto:
+```bash
+docker-compose up --build
+```
+
+- Frontend: [http://localhost:4200](http://localhost:4200)
+- Backend: [http://localhost:8080/api/hello](http://localhost:8080/api/hello)
+
+---
+
+## 📤 Producción
+- El frontend se puede publicar en GitHub Pages después de compilar con:
+  ```bash
+  ng build --base-href /ERPLite/
+  ```
+- El backend requiere despliegue aparte (ej. Railway, VPS, etc.).
+
+---
+
+## ✅ To Do
+- [ ] Crear endpoints CRUD en Go
+- [ ] Integrar Angular con la API
+- [ ] Autenticación JWT
+- [ ] Docker Compose para entorno de desarrollo y producción
+- [ ] Publicar documentación y demo online
